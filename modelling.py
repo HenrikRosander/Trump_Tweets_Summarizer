@@ -11,8 +11,8 @@ def modelling(X_modified, Y_modified, run_model_fit):
     layers = 3
     units = 300
     drop = 0.2
-    batch_size = 18
-    epochs = 20
+    batch_size = 50
+    epochs = 5
 
     model.add(LSTM(units, input_shape=(
         X_modified.shape[1], X_modified.shape[2]), return_sequences=True))
@@ -34,7 +34,7 @@ def modelling(X_modified, Y_modified, run_model_fit):
             filename += f'_{units}_{drop}'
         filename += f'_e{epochs}_bs{batch_size}.h5'
 
-        model.fit(X_modified, Y_modified, epochs=epochs, batch_size=batch_size)
+        model.fit(X_modified, Y_modified, epochs=epochs, batch_size=batch_size, verbose=2)
         print('filename:', filename)
         model.save_weights(filename)
 
